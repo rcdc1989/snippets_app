@@ -1,8 +1,8 @@
 import logging
-
+import argparse
 # set the log output file and the log level
 
-logging.basicCongic(filename = "snippets.log", level = logging.DEBUG)
+logging.basicConfig(filename = "snippets.log", level = logging.DEBUG)
 
 def put(name, snippet):
     """
@@ -22,3 +22,30 @@ def get(name):
     """
     logging.error("FIXME: Unimplemented - get({!r})".format(name))
     return "404: Snippet Not Found"
+    
+def append(name, snippet):
+    """
+    add to an existing snippet
+
+    Returns the name and the snippet added
+    """
+    logging.error("FIXME: Unimplemented - append({!r}, {!r})".format(name, snippet))
+    return name, snippet
+    
+def rename(old_name,new_name):
+    """
+    change name of a snippet to new_name
+    """
+    logging.error("FIXME: Unimplemented - rename({!r}, {!r})".format(old_name,                                                                  new_name))
+    return(new_name)
+    
+def main():
+    """main function"""
+    logging.info("Constructing parser")
+    parser = argparse.ArgumentParser(description="store and retrieve snippets of text")
+    arguments = parser.parse_args()
+    print(arguments)
+    
+if __name__=="__main__":
+    main()
+    
