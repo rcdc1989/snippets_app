@@ -43,3 +43,11 @@ INFO:root:Constructing parser
 DEBUG:root:Constructing put subparser
 DEBUG:root:constructing get subparser
 ERROR:root:FIXME: Unimplemented - get('name1')
+DEBUG:root:Connect to postgreSQL
+DEBUG:root:Database connection established.
+INFO:root:Constructing parser
+DEBUG:root:Constructing put subparser
+DEBUG:root:constructing get subparser
+ERROR:root:FIXME: Unimplemented - put('Test', 'this is a test snippet')
+INFO:root:storing snippet 'Test': 'this is a test snippet'
+DEBUG:root:snippet stored successfully
