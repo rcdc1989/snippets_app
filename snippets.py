@@ -39,21 +39,7 @@ def get(name):
     
     #return the second element in the tuple
     return record[1]
-    
-def append(name, snippet):
-    """
-    add to an existing snippet
-    Returns the name and the snippet added
-    """
-    logging.error("FIXME: Unimplemented - append({!r}, {!r})".format(name, snippet))
-    return name, snippet
-    
-def rename(old_name,new_name):
-    """
-    change name of a snippet to new_name
-    """
-    logging.error("FIXME: Unimplemented - rename({!r}, {!r})".format(old_name,                                                                  new_name))
-    return(new_name)
+
     
 ################################################################################    
 def main():
