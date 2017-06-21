@@ -51,3 +51,90 @@ DEBUG:root:constructing get subparser
 ERROR:root:FIXME: Unimplemented - put('Test', 'this is a test snippet')
 INFO:root:storing snippet 'Test': 'this is a test snippet'
 DEBUG:root:snippet stored successfully
+DEBUG:root:Connect to postgreSQL
+DEBUG:root:Database connection established.
+INFO:root:Constructing parser
+DEBUG:root:Constructing put subparser
+DEBUG:root:constructing get subparser
+INFO:root:retrieving snippet with keyword 'quit'
+DEBUG:root:snippet retrieved successfully
+DEBUG:root:Connect to postgreSQL
+DEBUG:root:Database connection established.
+INFO:root:Constructing parser
+DEBUG:root:Constructing put subparser
+DEBUG:root:constructing get subparser
+INFO:root:retrieving snippet with keyword 'quit'
+DEBUG:root:snippet retrieved successfully
+DEBUG:root:Connect to postgreSQL
+DEBUG:root:Database connection established.
+INFO:root:Constructing parser
+DEBUG:root:Constructing put subparser
+DEBUG:root:constructing get subparser
+INFO:root:retrieving snippet with keyword 'quit'
+DEBUG:root:snippet retrieved successfully
+DEBUG:root:Connect to postgreSQL
+DEBUG:root:Database connection established.
+INFO:root:Constructing parser
+DEBUG:root:Constructing put subparser
+DEBUG:root:constructing get subparser
+INFO:root:retrieving snippet with keyword 'test'
+DEBUG:root:snippet retrieved successfully
+DEBUG:root:Connect to postgreSQL
+DEBUG:root:Database connection established.
+INFO:root:Constructing parser
+DEBUG:root:Constructing put subparser
+DEBUG:root:constructing get subparser
+DEBUG:root:Connect to postgreSQL
+DEBUG:root:Database connection established.
+INFO:root:Constructing parser
+DEBUG:root:Constructing put subparser
+DEBUG:root:constructing get subparser
+INFO:root:retrieving snippet with keyword 'test'
+DEBUG:root:snippet retrieved successfully
+DEBUG:root:Connect to postgreSQL
+DEBUG:root:Database connection established.
+INFO:root:Constructing parser
+DEBUG:root:Constructing put subparser
+DEBUG:root:constructing get subparser
+INFO:root:retrieving snippet with keyword 'test'
+DEBUG:root:snippet retrieved successfully
+DEBUG:root:Connect to postgreSQL
+DEBUG:root:Database connection established.
+INFO:root:Constructing parser
+DEBUG:root:Constructing put subparser
+DEBUG:root:constructing get subparser
+INFO:root:retrieving snippet with keyword 'test'
+DEBUG:root:snippet retrieved successfully
+DEBUG:root:Connect to postgreSQL
+DEBUG:root:Database connection established.
+INFO:root:Constructing parser
+DEBUG:root:Constructing put subparser
+DEBUG:root:constructing get subparser
+INFO:root:storing snippet 'what': 'what what what?'
+DEBUG:root:snippet stored successfully
+DEBUG:root:Connect to postgreSQL
+DEBUG:root:Database connection established.
+INFO:root:Constructing parser
+DEBUG:root:Constructing put subparser
+DEBUG:root:constructing get subparser
+DEBUG:root:Connect to postgreSQL
+DEBUG:root:Database connection established.
+INFO:root:Constructing parser
+DEBUG:root:Constructing put subparser
+DEBUG:root:constructing get subparser
+INFO:root:retrieving snippet with keyword 'what'
+DEBUG:root:snippet retrieved successfully
+DEBUG:root:Connect to postgreSQL
+DEBUG:root:Database connection established.
+INFO:root:Constructing parser
+DEBUG:root:Constructing put subparser
+DEBUG:root:constructing get subparser
+INFO:root:retrieving snippet with keyword 'exit'
+DEBUG:root:snippet retrieved successfully
+DEBUG:root:Connect to postgreSQL
+DEBUG:root:Database connection established.
+INFO:root:Constructing parser
+DEBUG:root:Constructing put subparser
+DEBUG:root:constructing get subparser
+INFO:root:retrieving snippet with keyword 'exit'
+DEBUG:root:snippet retrieved successfully

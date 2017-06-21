@@ -14,7 +14,6 @@ def put(name, snippet):
     Store a snippet with an associated name.
     Returns the name and the snippet
     """
-    logging.error("FIXME: Unimplemented - put({!r}, {!r})".format(name, snippet))
     logging.info("storing snippet {!r}: {!r}".format(name,snippet))
     cursor = connection.cursor()
     command = "insert into snippets values(%s,%s)"
@@ -29,8 +28,17 @@ def get(name):
     If there is no such snippet, return '404: Snippet Not Found'.
     Returns the snippet.
     """
-    logging.error("FIXME: Unimplemented - get({!r})".format(name))
-    return name
+    
+    logging.info("retrieving snippet with keyword {!r}".format(name))
+    cursor = connection.cursor()
+    command = "select keyword, message from snippets where keyword=%s"
+    cursor.execute(command, (name,))
+    record = cursor.fetchone()
+    connection.commit()
+    logging.debug("snippet retrieved successfully")
+    
+    #return the second element in the tuple
+    return record[1]
     
 def append(name, snippet):
     """
