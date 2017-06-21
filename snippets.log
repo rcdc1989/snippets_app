@@ -138,3 +138,23 @@ DEBUG:root:Constructing put subparser
 DEBUG:root:constructing get subparser
 INFO:root:retrieving snippet with keyword 'exit'
 DEBUG:root:snippet retrieved successfully
+DEBUG:root:Connect to postgreSQL
+DEBUG:root:Database connection established.
+INFO:root:Constructing parser
+DEBUG:root:Constructing put subparser
+DEBUG:root:constructing get subparser
+INFO:root:retrieving snippet with keyword 'hat'
+DEBUG:root:snippet retrieved successfully
+DEBUG:root:Connect to postgreSQL
+DEBUG:root:Database connection established.
+INFO:root:Constructing parser
+DEBUG:root:Constructing put subparser
+DEBUG:root:constructing get subparser
+INFO:root:retrieving snippet with keyword 'hat'
+DEBUG:root:snippet retrieved successfully
+DEBUG:root:Connect to postgreSQL
+DEBUG:root:Database connection established.
+INFO:root:Constructing parser
+DEBUG:root:Constructing put subparser
+DEBUG:root:constructing get subparser
+INFO:root:storing snippet 'exit': 'lalalala'

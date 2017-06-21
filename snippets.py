@@ -17,7 +17,16 @@ def put(name, snippet):
     logging.info("storing snippet {!r}: {!r}".format(name,snippet))
     cursor = connection.cursor()
     command = "insert into snippets values(%s,%s)"
-    cursor.execute(command, (name,snippet))
+    
+    #check for duplicate records, if one exists, overwrite
+    try:
+        command = "insert into snippets values (%s, %s)"
+        cursor.execute(command, (name, snippet))
+    except psycopg2.IntegrityError as e:
+        connection.rollback()
+        command = "update snippets set message=%s where keyword=%s"
+        cursor.execute(command, (snippet, name))
+    
     connection.commit()
     logging.debug("snippet stored successfully")
     
@@ -36,6 +45,11 @@ def get(name):
     record = cursor.fetchone()
     connection.commit()
     logging.debug("snippet retrieved successfully")
+    
+    if not record:
+        # No snippet was found with that name.
+        logging.error("Snippet not found")
+        return "404: Snippet Not Found"
     
     #return the second element in the tuple
     return record[1]
