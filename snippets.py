@@ -17,11 +17,8 @@ def put(name, snippet):
     logging.info("storing snippet {!r}: {!r}".format(name,snippet))
     cursor = connection.cursor()
     command = "insert into snippets values(%s,%s)"
-    
-    #check for data
-    
+
     #check for duplicate records, if one exists, overwrite
-    
     with connection, connection.cursor() as cursor:
         try:
             command = "insert into snippets values (%s, %s)"
@@ -58,7 +55,27 @@ def get(name):
     #return the second element in the tuple
     return record[1]
 
+def catalog():
+    """Retrieve a catalog of the available search terms"""
+    logging.info("retrieving catalog...")
     
+    #execute query for catalog
+    with connection, connection.cursor() as cursor:
+        cursor.execute("select keyword from snippets order by keyword")
+        records = cursor.fetchall()
+
+    logging.debug("retrieved catalog successfully")
+    print("snippets are available for the following key words...")
+    
+    print(records)
+    
+    #cycle through list of tuples, printing keywords
+    for item in records:
+        print(item[0], end = "  ")
+    print("\n")
+    return records
+    
+
 ################################################################################    
 def main():
     """main function"""
@@ -77,6 +94,11 @@ def main():
     get_parser = subparsers.add_parser("get", help = "retrieve a snippet")
     get_parser.add_argument("name", help = "name of desired snippet")
     
+    #subparser for the catalog command
+    logging.debug("constructing catalog subparser")
+    catalog_parser = subparsers.add_parser("catalog", 
+                                            help = "retrieve list of keywords")
+    
     arguments = parser.parse_args()
     
     # Convert parsed arguments from Namespace to dictionary
@@ -90,7 +112,10 @@ def main():
     elif command == "get":
         snippet = get(**arguments)
         print("Retrieved snippet: {!r}".format(snippet))
-    
+    elif command == "catalog":
+        print("Retrieved catalog...")
+        snippet = catalog()
+        
 if __name__=="__main__":
    main()
 
