@@ -18,16 +18,19 @@ def put(name, snippet):
     cursor = connection.cursor()
     command = "insert into snippets values(%s,%s)"
     
-    #check for duplicate records, if one exists, overwrite
-    try:
-        command = "insert into snippets values (%s, %s)"
-        cursor.execute(command, (name, snippet))
-    except psycopg2.IntegrityError as e:
-        connection.rollback()
-        command = "update snippets set message=%s where keyword=%s"
-        cursor.execute(command, (snippet, name))
+    #check for data
     
-    connection.commit()
+    #check for duplicate records, if one exists, overwrite
+    
+    with connection, connection.cursor() as cursor:
+        try:
+            command = "insert into snippets values (%s, %s)"
+            cursor.execute(command, (name, snippet))
+        except psycopg2.IntegrityError as e:
+            connection.rollback()
+            command = "update snippets set message=%s where keyword=%s"
+            cursor.execute(command, (snippet, name))
+    
     logging.debug("snippet stored successfully")
     
     return name,snippet
@@ -39,11 +42,12 @@ def get(name):
     """
     
     logging.info("retrieving snippet with keyword {!r}".format(name))
-    cursor = connection.cursor()
-    command = "select keyword, message from snippets where keyword=%s"
-    cursor.execute(command, (name,))
-    record = cursor.fetchone()
-    connection.commit()
+    
+    
+    with connection, connection.cursor() as cursor:
+        cursor.execute("select message from snippets where keyword=%s", (name,))
+        record = cursor.fetchone()
+
     logging.debug("snippet retrieved successfully")
     
     if not record:
@@ -78,7 +82,8 @@ def main():
     # Convert parsed arguments from Namespace to dictionary
     arguments = vars(arguments)
     command = arguments.pop("command")
-
+    
+    #excute correct command
     if command == "put":
         name, snippet = put(**arguments)
         print("Stored {!r} as {!r}".format(snippet, name))
@@ -88,4 +93,26 @@ def main():
     
 if __name__=="__main__":
    main()
-    
+
+"""
+Notes on error handling:
+
+1->too many arguments gives:
+usage: snippets.py [-h] {put,get} ...
+snippets.py: error: unrecognized arguments: test3 test3
+PASS
+
+2->No arguments gives:
+usage: snippets.py put [-h] name snippet
+snippets.py put: error: the following arguments are required: name, snippet
+PASS
+
+3->unusual datatype for put: 
+combinations of lists and dictionaries...all supported
+PASS
+
+4->unusual datatype for get: (python3 snippets.py get [1,2,3])
+gives: 
+Retrieved snippet: '404: Snippet Not Found'
+PASS
+"""

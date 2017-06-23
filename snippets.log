@@ -158,3 +158,140 @@ INFO:root:Constructing parser
 DEBUG:root:Constructing put subparser
 DEBUG:root:constructing get subparser
 INFO:root:storing snippet 'exit': 'lalalala'
+DEBUG:root:Connect to postgreSQL
+DEBUG:root:Database connection established.
+INFO:root:Constructing parser
+DEBUG:root:Constructing put subparser
+DEBUG:root:constructing get subparser
+DEBUG:root:Connect to postgreSQL
+DEBUG:root:Database connection established.
+INFO:root:Constructing parser
+DEBUG:root:Constructing put subparser
+DEBUG:root:constructing get subparser
+DEBUG:root:Connect to postgreSQL
+DEBUG:root:Database connection established.
+INFO:root:Constructing parser
+DEBUG:root:Constructing put subparser
+DEBUG:root:constructing get subparser
+DEBUG:root:Connect to postgreSQL
+DEBUG:root:Database connection established.
+INFO:root:Constructing parser
+DEBUG:root:Constructing put subparser
+DEBUG:root:constructing get subparser
+DEBUG:root:Connect to postgreSQL
+DEBUG:root:Database connection established.
+INFO:root:Constructing parser
+DEBUG:root:Constructing put subparser
+DEBUG:root:constructing get subparser
+INFO:root:storing snippet 'testone': 'test1'
+DEBUG:root:snippet stored successfully
+DEBUG:root:Connect to postgreSQL
+DEBUG:root:Database connection established.
+INFO:root:Constructing parser
+DEBUG:root:Constructing put subparser
+DEBUG:root:constructing get subparser
+DEBUG:root:Connect to postgreSQL
+DEBUG:root:Database connection established.
+INFO:root:Constructing parser
+DEBUG:root:Constructing put subparser
+DEBUG:root:constructing get subparser
+DEBUG:root:Connect to postgreSQL
+DEBUG:root:Database connection established.
+INFO:root:Constructing parser
+DEBUG:root:Constructing put subparser
+DEBUG:root:constructing get subparser
+DEBUG:root:Connect to postgreSQL
+DEBUG:root:Database connection established.
+INFO:root:Constructing parser
+DEBUG:root:Constructing put subparser
+DEBUG:root:constructing get subparser
+DEBUG:root:Connect to postgreSQL
+DEBUG:root:Database connection established.
+INFO:root:Constructing parser
+DEBUG:root:Constructing put subparser
+DEBUG:root:constructing get subparser
+DEBUG:root:Connect to postgreSQL
+DEBUG:root:Database connection established.
+INFO:root:Constructing parser
+DEBUG:root:Constructing put subparser
+DEBUG:root:constructing get subparser
+INFO:root:retrieving snippet with keyword 'false'
+DEBUG:root:snippet retrieved successfully
+ERROR:root:Snippet not found
+DEBUG:root:Connect to postgreSQL
+DEBUG:root:Database connection established.
+INFO:root:Constructing parser
+DEBUG:root:Constructing put subparser
+DEBUG:root:constructing get subparser
+INFO:root:retrieving snippet with keyword '[1,2,3]'
+DEBUG:root:snippet retrieved successfully
+ERROR:root:Snippet not found
+DEBUG:root:Connect to postgreSQL
+DEBUG:root:Database connection established.
+INFO:root:Constructing parser
+DEBUG:root:Constructing put subparser
+DEBUG:root:constructing get subparser
+DEBUG:root:Connect to postgreSQL
+DEBUG:root:Database connection established.
+INFO:root:Constructing parser
+DEBUG:root:Constructing put subparser
+DEBUG:root:constructing get subparser
+INFO:root:storing snippet 'somelist': '[1,2,3]'
+DEBUG:root:snippet stored successfully
+DEBUG:root:Connect to postgreSQL
+DEBUG:root:Database connection established.
+INFO:root:Constructing parser
+DEBUG:root:Constructing put subparser
+DEBUG:root:constructing get subparser
+INFO:root:storing snippet 'somedict': '{hat:cat}'
+DEBUG:root:snippet stored successfully
+DEBUG:root:Connect to postgreSQL
+DEBUG:root:Database connection established.
+INFO:root:Constructing parser
+DEBUG:root:Constructing put subparser
+DEBUG:root:constructing get subparser
+INFO:root:storing snippet '[1,2,3]': '[4,5,6]'
+DEBUG:root:snippet stored successfully
+DEBUG:root:Connect to postgreSQL
+DEBUG:root:Database connection established.
+INFO:root:Constructing parser
+DEBUG:root:Constructing put subparser
+DEBUG:root:constructing get subparser
+INFO:root:storing snippet '{cat:hat}': '{mat:fat}'
+DEBUG:root:snippet stored successfully
+DEBUG:root:Connect to postgreSQL
+DEBUG:root:Connect to postgreSQL
+DEBUG:root:Database connection established.
+INFO:root:Constructing parser
+DEBUG:root:Constructing put subparser
+DEBUG:root:constructing get subparser
+INFO:root:retrieving snippet with keyword 'exit'
+DEBUG:root:snippet retrieved successfully
+DEBUG:root:Connect to postgreSQL
+DEBUG:root:Database connection established.
+INFO:root:Constructing parser
+DEBUG:root:Constructing put subparser
+DEBUG:root:constructing get subparser
+INFO:root:storing snippet 'exit': '\n\\q'
+DEBUG:root:snippet stored successfully
+DEBUG:root:Connect to postgreSQL
+DEBUG:root:Database connection established.
+INFO:root:Constructing parser
+DEBUG:root:Constructing put subparser
+DEBUG:root:constructing get subparser
+INFO:root:storing snippet 'exit': '\\q'
+DEBUG:root:snippet stored successfully
+DEBUG:root:Connect to postgreSQL
+DEBUG:root:Database connection established.
+INFO:root:Constructing parser
+DEBUG:root:Constructing put subparser
+DEBUG:root:constructing get subparser
+INFO:root:storing snippet 'hat': 'cat'
+DEBUG:root:snippet stored successfully
+DEBUG:root:Connect to postgreSQL
+DEBUG:root:Database connection established.
+INFO:root:Constructing parser
+DEBUG:root:Constructing put subparser
+DEBUG:root:constructing get subparser
+INFO:root:storing snippet 'hat': 'kitty cat'
+DEBUG:root:snippet stored successfully
