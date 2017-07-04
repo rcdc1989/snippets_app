@@ -13,13 +13,15 @@ def put(name, snippet, hide=False):
     """
     Store a snippet with an associated name.
     Returns the name and the snippet
+    Provides the option to hide snippet from catalog and search functions
     """
     logging.info("storing snippet {!r}: {!r}".format(name,snippet))
     cursor = connection.cursor()
     command = "insert into snippets values(%s,%s)"
-
-    #check for duplicate records, if one exists, overwrite
+    
+    #execute query using psycopg2 cursor object
     with connection, connection.cursor() as cursor:
+        #check for duplicate records, if one exists, overwrite/update
         try:
             command = "insert into snippets values (%s, %s, %s)"
             cursor.execute(command, (name, snippet, hide))
@@ -29,7 +31,6 @@ def put(name, snippet, hide=False):
             cursor.execute(command, (snippet, hide, name))
     
     logging.debug("snippet stored successfully")
-    
     return name,snippet
     
 def get(name):
@@ -40,7 +41,7 @@ def get(name):
     
     logging.info("retrieving snippet with keyword {!r}".format(name))
     
-    
+    #execute query using psycopg2 cursor object
     with connection, connection.cursor() as cursor:
         cursor.execute("select keyword, message from snippets where keyword=%s",
                        (name,)
@@ -49,8 +50,8 @@ def get(name):
 
     logging.debug("snippet retrieved successfully")
     
+    #handle case where snippet does not exist
     if not record:
-        # No snippet was found with that name.
         logging.error("Snippet not found")
         return "404: Snippet Not Found"
     
@@ -79,7 +80,7 @@ def search(search_term):
     """Search for a snippet by keyword """
     logging.info("searching for keyword " + search_term)
     
-    #execute query for catalog
+    #execute query for catalog using cursor object
     with connection, connection.cursor() as cursor:
         cursor.execute("select keyword, message from snippets \
                         where keyword like '%" + search_term + "%' and not hidden")
@@ -87,7 +88,7 @@ def search(search_term):
     print("found " + str(len(records)) + 
           " records for search term '" + 
           search_term +"'")
-    #loop through search results, displaying keyword:message
+    #loop through search results, displaying keyword: message
     for record in records:
         print(record[0] +": "+record[1])
     
