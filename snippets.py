@@ -9,7 +9,7 @@ logging.debug("Connect to postgreSQL")
 connection = psycopg2.connect(database="snippets")
 logging.debug("Database connection established.")
 
-def put(name, snippet):
+def put(name, snippet, hide=False):
     """
     Store a snippet with an associated name.
     Returns the name and the snippet
@@ -21,12 +21,12 @@ def put(name, snippet):
     #check for duplicate records, if one exists, overwrite
     with connection, connection.cursor() as cursor:
         try:
-            command = "insert into snippets values (%s, %s)"
-            cursor.execute(command, (name, snippet))
+            command = "insert into snippets values (%s, %s, %s)"
+            cursor.execute(command, (name, snippet, hide))
         except psycopg2.IntegrityError as e:
             connection.rollback()
-            command = "update snippets set message=%s where keyword=%s"
-            cursor.execute(command, (snippet, name))
+            command = "update snippets set message=%s, hidden=%s where keyword=%s"
+            cursor.execute(command, (snippet, hide, name))
     
     logging.debug("snippet stored successfully")
     
@@ -42,7 +42,9 @@ def get(name):
     
     
     with connection, connection.cursor() as cursor:
-        cursor.execute("select message from snippets where keyword=%s", (name,))
+        cursor.execute("select keyword, message from snippets where keyword=%s",
+                       (name,)
+                      )
         record = cursor.fetchone()
 
     logging.debug("snippet retrieved successfully")
@@ -53,7 +55,7 @@ def get(name):
         return "404: Snippet Not Found"
     
     #return the second element in the tuple
-    return record[1]
+    return record
 
 def catalog():
     """Retrieve a catalog of the available search terms"""
@@ -61,20 +63,37 @@ def catalog():
     
     #execute query for catalog
     with connection, connection.cursor() as cursor:
-        cursor.execute("select keyword from snippets order by keyword")
+        cursor.execute("select keyword from snippets where not hidden order by keyword")
         records = cursor.fetchall()
 
     logging.debug("retrieved catalog successfully")
     print("snippets are available for the following key words...")
     
-    print(records)
-    
     #cycle through list of tuples, printing keywords
     for item in records:
-        print(item[0], end = "  ")
+        print(item[0], end = ", ")
     print("\n")
     return records
     
+def search(search_term):
+    """Search for a snippet by keyword """
+    logging.info("searching for keyword " + search_term)
+    
+    #execute query for catalog
+    with connection, connection.cursor() as cursor:
+        cursor.execute("select keyword, message from snippets \
+                        where keyword like '%" + search_term + "%' and not hidden")
+        records = cursor.fetchall()
+    print("found " + str(len(records)) + 
+          " records for search term '" + 
+          search_term +"'")
+    #loop through search results, displaying keyword:message
+    for record in records:
+        print(record[0] +": "+record[1])
+    
+    logging.debug("searched for keyword " + search_term)
+    print("...")
+    return records
 
 ################################################################################    
 def main():
@@ -88,6 +107,9 @@ def main():
     put_parser = subparsers.add_parser("put", help="Store a snippet")    
     put_parser.add_argument("name", help="Name of the snippet")
     put_parser.add_argument("snippet", help="Snippet text")
+    put_parser.add_argument("--hide", action="store_true",
+                            help="hide snippet from search and catalog"
+                            )
     
     #subparser for the get command
     logging.debug("constructing get subparser")
@@ -98,6 +120,13 @@ def main():
     logging.debug("constructing catalog subparser")
     catalog_parser = subparsers.add_parser("catalog", 
                                             help = "retrieve list of keywords")
+    
+    #subparser for the search command
+    logging.debug("constructing search subparser")
+    search_parser = subparsers.add_parser("search", 
+                                          help = "search for keyword")
+    search_parser.add_argument("search_term", 
+                               help = "term to search for..")
     
     arguments = parser.parse_args()
     
@@ -110,11 +139,13 @@ def main():
         name, snippet = put(**arguments)
         print("Stored {!r} as {!r}".format(snippet, name))
     elif command == "get":
-        snippet = get(**arguments)
-        print("Retrieved snippet: {!r}".format(snippet))
+        name, snippet = get(**arguments)
+        print("Retrieved snippet: {!r} \n {!r}".format(name, snippet))
     elif command == "catalog":
         print("Retrieved catalog...")
         snippet = catalog()
+    elif command == "search":
+        snippet = search(**arguments)
         
 if __name__=="__main__":
    main()
