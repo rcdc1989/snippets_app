@@ -135,15 +135,18 @@ def main():
                                help = "term to search for..")
     
     arguments = parser.parse_args()
-    print(arguments)
+    
     # Convert parsed arguments from Namespace to dictionary
     arguments = vars(arguments)
     command = arguments.pop("command")
     
     #excute correct command
     if command == "put":
-        print(arguments)
-        name, snippet = put(name=arguments["name"], snippet=arguments["snippet"],
+        #here, we explicitly name each argument in put, because arguments dict
+        #contains an extra argument (unhide). We pass hide only because
+        #unhide is equivalent to passing hide=false
+        name, snippet = put(name=arguments["name"], 
+                            snippet=arguments["snippet"],
                             hide=arguments["hide"])
         print("Stored {!r} as {!r}".format(snippet, name))
     elif command == "get":
