@@ -108,8 +108,14 @@ def main():
     put_parser = subparsers.add_parser("put", help="Store a snippet")    
     put_parser.add_argument("name", help="Name of the snippet")
     put_parser.add_argument("snippet", help="Snippet text")
-    put_parser.add_argument("--hide", action="store_true",
+    
+    #create argument group to ensure mutual exclusion of hide and unhide args
+    group = put_parser.add_mutually_exclusive_group()
+    group.add_argument("--hide", action="store_true",
                             help="hide snippet from search and catalog"
+                            )
+    group.add_argument("--unhide", action="store_false",
+                            help="unhide snippet from search and catalog"
                             )
     
     #subparser for the get command
@@ -119,8 +125,7 @@ def main():
     
     #subparser for the catalog command
     logging.debug("constructing catalog subparser")
-    catalog_parser = subparsers.add_parser("catalog", 
-                                            help = "retrieve list of keywords")
+    subparsers.add_parser("catalog", help = "retrieve list of keywords")
     
     #subparser for the search command
     logging.debug("constructing search subparser")
@@ -130,14 +135,16 @@ def main():
                                help = "term to search for..")
     
     arguments = parser.parse_args()
-    
+    print(arguments)
     # Convert parsed arguments from Namespace to dictionary
     arguments = vars(arguments)
     command = arguments.pop("command")
     
     #excute correct command
     if command == "put":
-        name, snippet = put(**arguments)
+        print(arguments)
+        name, snippet = put(name=arguments["name"], snippet=arguments["snippet"],
+                            hide=arguments["hide"])
         print("Stored {!r} as {!r}".format(snippet, name))
     elif command == "get":
         name, snippet = get(**arguments)
